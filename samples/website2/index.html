@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AURUM — Luxury Motion Website Demo</title>
+<style>
+:root{--bg:#f4efe6;--ink:#14110d;--gold:#b08d4f}
+*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;overflow-x:hidden}
+#cur{position:fixed;width:14px;height:14px;border:1px solid var(--ink);border-radius:50%;pointer-events:none;z-index:99;transition:width .3s,height .3s,background .3s;mix-blend-mode:difference;border-color:#fff}
+#cur.h{width:60px;height:60px;background:#fff}
+nav{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:26px 5vw;z-index:10;mix-blend-mode:difference;color:#fff;font:12px/1 Arial;letter-spacing:.35em}
+nav a{color:inherit;text-decoration:none;margin-left:28px}
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(60px,15vw,230px);font-weight:400;letter-spacing:.04em;line-height:1;clip-path:inset(0 0 100% 0);animation:rev 1.4s .2s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes rev{to{clip-path:inset(0)}}
+.hero p{font:13px Arial;letter-spacing:.4em;margin-top:30px;opacity:0;animation:f 1s 1.3s forwards}@keyframes f{to{opacity:1}}
+.orb{position:absolute;width:44vmin;height:44vmin;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--gold) 55%,#5a4420);filter:blur(2px);z-index:-1;opacity:.85;will-change:transform}
+.mq{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;padding:22px 0;font-size:34px;font-style:italic}
+.mq div{display:inline-block;animation:mq 22s linear infinite}@keyframes mq{to{transform:translateX(-50%)}}
+.hs{height:300vh;position:relative}.hs .st{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center}
+.trk{display:flex;gap:6vw;padding:0 8vw;will-change:transform}
+.pc{flex:0 0 min(70vw,520px);height:64vh;background:#e8dfcf;display:flex;flex-direction:column;justify-content:flex-end;padding:30px;position:relative;overflow:hidden;transition:.5s}
+.pc::before{content:"";position:absolute;left:50%;top:38%;width:46%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;border:14px solid var(--gold);box-shadow:inset 0 0 0 3px #fff8,0 20px 40px #0003;transition:.8s}.pc:hover::before{rotate:180deg;scale:1.12}
+.pc:hover{background:var(--ink);color:var(--bg)}
+.pc i{position:absolute;top:30px;right:30px;font:12px Arial;letter-spacing:.3em}
+.pc b{font-size:44px;font-weight:400}.pc span{font:12px Arial;letter-spacing:.3em;margin-top:8px;color:var(--gold)}
+.ct{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10vh 5vw}
+.ct h2{font-size:clamp(34px,7vw,100px);font-weight:400;max-width:12em}
+.ct a{margin-top:50px;font:13px Arial;letter-spacing:.35em;text-decoration:none;color:var(--ink);border-bottom:1px solid;padding-bottom:6px}
+.rv{opacity:0;transform:translateY(60px);transition:1.2s cubic-bezier(.2,.8,.2,1)}.rv.on{opacity:1;transform:none}
+@media(hover:none){#cur{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero h1{clip-path:none}.hero p,.rv{opacity:1;transform:none}}
+</style></head><body><div id="cur"></div>
+<nav><span>AURUM</span><div><a href="#c">COLLECTION</a><a href="#c">CONTACT</a></div></nav>
+<header class="hero"><div class="orb" id="orb"></div><h1>AURUM</h1><p>HAUTE JOAILLERIE · MOTION WEBSITE DEMO</p></header>
+<div class="mq"><div>Crafted in gold &nbsp;✦&nbsp; Timeless design &nbsp;✦&nbsp; Crafted in gold &nbsp;✦&nbsp; Timeless design &nbsp;✦&nbsp; Crafted in gold &nbsp;✦&nbsp; Timeless design &nbsp;✦&nbsp; Crafted in gold &nbsp;✦&nbsp; Timeless design &nbsp;✦&nbsp;</div></div>
+<section class="hs" id="hs"><div class="st"><div class="trk" id="trk">
+<div class="pc"><i>01</i><b>Éclat Ring</b><span>18K GOLD</span></div><div class="pc"><i>02</i><b>Lune Pendant</b><span>DIAMOND</span></div><div class="pc"><i>03</i><b>Soleil Bracelet</b><span>ROSE GOLD</span></div><div class="pc"><i>04</i><b>Aube Earrings</b><span>PEARL</span></div></div></div></section>
+<section class="ct" id="c"><h2 class="rv">A website as refined as your brand.</h2><a class="rv" href="#" data-h>START A PROJECT →</a></section>
+<script>
+const cur=document.getElementById('cur'),orb=document.getElementById('orb');let tx=0,ty=0,cx=0,cy=0;
+addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY});
+document.querySelectorAll('a,.pc').forEach(e=>{e.addEventListener('mouseenter',()=>cur.classList.add('h'));e.addEventListener('mouseleave',()=>cur.classList.remove('h'))});
+(function l(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform=`translate(${cx-7}px,${cy-7}px)`;requestAnimationFrame(l)})();
+const hs=document.getElementById('hs'),trk=document.getElementById('trk');
+function s(){const r=hs.getBoundingClientRect(),p=Math.max(0,Math.min(1,-r.top/(hs.offsetHeight-innerHeight)));
+ trk.style.transform=`translateX(${-p*(trk.scrollWidth-innerWidth)}px)`;orb.style.transform=`translateY(${scrollY*.35}px) scale(${1+scrollY/1500})`}
+addEventListener('scroll',s,{passive:true});addEventListener('resize',s);s();
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('on')),{threshold:.3});document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+</script></body></html>

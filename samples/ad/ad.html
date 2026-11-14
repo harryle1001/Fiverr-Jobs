@@ -8,13 +8,13 @@ canvas{position:absolute;inset:0}
 <div class="t" id="t1" style="top:120px;font-size:64px"></div><div class="t" id="t2" style="top:900px;font-size:44px;color:#19d3c5"></div>
 <div class="t" id="t3" style="top:1040px;font-size:30px;font-weight:500;letter-spacing:.2em"></div></div>
 <script src="../bottle.js"></script><script>
-const cv=document.getElementById('c'),x=cv.getContext('2d'),B=document.getElementById('b');
+const S=parseFloat(location.hash.slice(1))||1;const cv=document.getElementById('c'),x=cv.getContext('2d'),B=document.getElementById('b');cv.width=720*S;cv.height=1280*S;cv.style.width='720px';cv.style.height='1280px';const SC=document.getElementById('s');
 const ez=k=>1-Math.pow(1-Math.max(0,Math.min(1,k)),3);
 let seed=1;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
 const P=Array.from({length:70},()=>({x:rnd()*720,y:rnd()*1280,r:2+rnd()*9,v:30+rnd()*80,p:rnd()*6}));
 function txt(id,s,t0,t){const e=document.getElementById(id),k=ez((t-t0)/.7);e.textContent=s;e.style.opacity=k;e.style.transform=`translateY(${(1-k)*40}px)`}
 window.render=function(t){ // 0..10s
- x.clearRect(0,0,720,1280);
+ x.setTransform(S,0,0,S,0,0);x.clearRect(0,0,720,1280);
  for(const q of P){const y=((q.y-q.v*t)%1300+1300)%1300-10;x.beginPath();x.arc(q.x+Math.sin(q.p+t*2)*14,y,q.r,0,7);x.strokeStyle='rgba(25,211,197,.4)';x.lineWidth=2;x.stroke()}
  // rings pulse
  for(let i=0;i<3;i++){const k=((t*.4+i/3)%1);x.beginPath();x.arc(360,640,120+k*340,0,7);x.strokeStyle=`rgba(25,211,197,${.35*(1-k)})`;x.stroke()}

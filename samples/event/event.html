@@ -1,7 +1,7 @@
 <!doctype html><meta charset="utf-8"><style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
 <canvas id="c" width="1280" height="720"></canvas><script>
-const c=document.getElementById('c'),x=c.getContext('2d');const L=8; // seamless loop length (s)
-window.render=function(t){const a=t/L*Math.PI*2;
+const S=parseFloat(location.hash.slice(1))||1;const c=document.getElementById('c'),x=c.getContext('2d');c.width=1280*S;c.height=720*S;const L=8; // seamless loop length (s)
+window.render=function(t){x.setTransform(S,0,0,S,0,0);const a=t/L*Math.PI*2;
  const g=x.createLinearGradient(0,0,1280,720);g.addColorStop(0,'#12003a');g.addColorStop(1,'#00203f');x.fillStyle=g;x.fillRect(0,0,1280,720);
  x.globalCompositeOperation='lighter';
  for(let i=0;i<7;i++){const ph=a*(1+i%3)+i;const cx=640+Math.cos(ph)*(300+i*30),cy=360+Math.sin(ph*1.0)*(160+i*12);
