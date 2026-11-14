@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+<canvas id="c" width="1280" height="720"></canvas><script>
+const c=document.getElementById('c'),x=c.getContext('2d');const L=8; // seamless loop length (s)
+window.render=function(t){const a=t/L*Math.PI*2;
+ const g=x.createLinearGradient(0,0,1280,720);g.addColorStop(0,'#12003a');g.addColorStop(1,'#00203f');x.fillStyle=g;x.fillRect(0,0,1280,720);
+ x.globalCompositeOperation='lighter';
+ for(let i=0;i<7;i++){const ph=a*(1+i%3)+i;const cx=640+Math.cos(ph)*(300+i*30),cy=360+Math.sin(ph*1.0)*(160+i*12);
+  const r=x.createRadialGradient(cx,cy,0,cx,cy,260);const h=(200+i*25)%360;r.addColorStop(0,`hsla(${h},100%,60%,.55)`);r.addColorStop(1,'transparent');x.fillStyle=r;x.fillRect(0,0,1280,720)}
+ // rotating light beams
+ for(let i=0;i<9;i++){const an=a+i*Math.PI*2/9;x.save();x.translate(640,720);x.rotate(-Math.PI/2+Math.sin(an)*.6);
+  const b=x.createLinearGradient(0,0,0,-900);b.addColorStop(0,'rgba(255,255,255,.22)');b.addColorStop(1,'transparent');x.fillStyle=b;x.beginPath();x.moveTo(-6,0);x.lineTo(6,0);x.lineTo(60,-900);x.lineTo(-60,-900);x.fill();x.restore()}
+ x.globalCompositeOperation='source-over';
+ // title
+ x.textAlign='center';x.fillStyle='#fff';x.font='800 120px Arial';x.fillText('GRAND OPENING',640+Math.sin(a)*8,360);
+ x.font='500 34px Arial';x.fillStyle='#8fe9ff';x.fillText('EVENT VISUAL · LED LOOP DEMO',640,430);
+ // equalizer
+ for(let i=0;i<48;i++){const h=30+Math.abs(Math.sin(a*2+i*.5))*90;x.fillStyle=`hsl(${190+i*3},100%,65%)`;x.fillRect(120+i*22,690-h,14,h)}
+};render(0);
+</script>
