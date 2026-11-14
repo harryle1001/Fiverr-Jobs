@@ -1,11 +1,11 @@
 <!doctype html><meta charset="utf-8"><style>
-html,body{margin:0;background:#04121f;overflow:hidden}
-#s{position:relative;width:720px;height:1280px;overflow:hidden;font-family:Inter,Arial,sans-serif;color:#eaf6ff;background:radial-gradient(circle at 50% 40%,#0d4a6e,#04121f 70%)}
+html,body{margin:0;background:#120b12;overflow:hidden}
+#s{position:relative;width:720px;height:1280px;overflow:hidden;font-family:Inter,Arial,sans-serif;color:#eaf6ff;background:radial-gradient(circle at 50% 40%,#4a1d3a,#120b12 70%)}
 canvas{position:absolute;inset:0}
 #b{position:absolute;left:210px;top:330px;width:300px}
 .t{position:absolute;left:0;right:0;text-align:center;font-weight:800;letter-spacing:-.02em}
 </style><div id="s"><canvas id="c" width="720" height="1280"></canvas><div id="b"></div>
-<div class="t" id="t1" style="top:120px;font-size:64px"></div><div class="t" id="t2" style="top:900px;font-size:44px;color:#19d3c5"></div>
+<div class="t" id="t1" style="top:120px;font-size:64px"></div><div class="t" id="t2" style="top:900px;font-size:44px;color:#d9b46a"></div>
 <div class="t" id="t3" style="top:1040px;font-size:30px;font-weight:500;letter-spacing:.2em"></div></div>
 <script src="../bottle.js"></script><script>
 const S=parseFloat(location.hash.slice(1))||1;const cv=document.getElementById('c'),x=cv.getContext('2d'),B=document.getElementById('b');cv.width=720*S;cv.height=1280*S;cv.style.width='720px';cv.style.height='1280px';const SC=document.getElementById('s');
@@ -15,16 +15,16 @@ const P=Array.from({length:70},()=>({x:rnd()*720,y:rnd()*1280,r:2+rnd()*9,v:30+r
 function txt(id,s,t0,t){const e=document.getElementById(id),k=ez((t-t0)/.7);e.textContent=s;e.style.opacity=k;e.style.transform=`translateY(${(1-k)*40}px)`}
 window.render=function(t){ // 0..10s
  x.setTransform(S,0,0,S,0,0);x.clearRect(0,0,720,1280);
- for(const q of P){const y=((q.y-q.v*t)%1300+1300)%1300-10;x.beginPath();x.arc(q.x+Math.sin(q.p+t*2)*14,y,q.r,0,7);x.strokeStyle='rgba(25,211,197,.4)';x.lineWidth=2;x.stroke()}
+ for(const q of P){const y=((q.y-q.v*t)%1300+1300)%1300-10;x.beginPath();x.arc(q.x+Math.sin(q.p+t*2)*14,y,q.r,0,7);x.strokeStyle='rgba(217,180,106,.4)';x.lineWidth=2;x.stroke()}
  // rings pulse
- for(let i=0;i<3;i++){const k=((t*.4+i/3)%1);x.beginPath();x.arc(360,640,120+k*340,0,7);x.strokeStyle=`rgba(25,211,197,${.35*(1-k)})`;x.stroke()}
+ for(let i=0;i<3;i++){const k=((t*.4+i/3)%1);x.beginPath();x.arc(360,640,120+k*340,0,7);x.strokeStyle=`rgba(217,180,106,${.35*(1-k)})`;x.stroke()}
  const e=ez(t/1.4);B.style.transform=`translateY(${(1-e)*900+Math.sin(t*1.6)*14}px) rotate(${(1-e)*-25+Math.sin(t)*2}deg) scale(${1+(t>6?(t-6)*.06:0)})`;
  B.innerHTML=bottleSVG(((t*.35)%1.4)-.2);
  const o=t>8.4?1-ez((t-8.4)/.6):1;
- txt('t1','Clean water.',1.5,t);if(t>3.2)txt('t1','Strong harvest.',3.2,t);
+ txt('t1','Pure elegance.',1.5,t);if(t>3.2)txt('t1','Scent in motion.',3.2,t);
  document.getElementById('t1').style.opacity*=1; 
- txt('t2',t<5.2?'':'Premium care for every pond',5.2,t);
- txt('t3',t<7?'':'NOBEN AQUA · DEMO AD',7,t);
+ txt('t2',t<5.2?'':'Fragrance for every moment',5.2,t);
+ txt('t3',t<7?'':'AURÉA · DEMO AD',7,t);
  document.getElementById('s').style.opacity=1;
 }
 render(0);

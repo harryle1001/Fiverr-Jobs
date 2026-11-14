@@ -1,24 +1,33 @@
-// Shared product bottle (demo brand). sweep: 0..1 light-sweep position
-window.bottleSVG = function (sweep = 0.5, accent = '#19d3c5') {
+// Shared product: perfume bottle for fictional brand "AURÉA" (demo). sweep: 0..1 light-sweep position
+window.bottleSVG = function (sweep = 0.5, accent = '#d9b46a') {
   const x = -120 + sweep * 440;
   return `<svg viewBox="0 0 200 420" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#0b3a5b"/><stop offset=".45" stop-color="#1b8fb5"/><stop offset="1" stop-color="#062a45"/></linearGradient>
-    <linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#e9f7ff"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#cfe9f7"/></linearGradient>
-    <linearGradient id="cap" x1="0" x2="1"><stop offset="0" stop-color="#0a1f33"/><stop offset=".5" stop-color="#25506e"/><stop offset="1" stop-color="#0a1f33"/></linearGradient>
-    <linearGradient id="sw" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-    <clipPath id="body"><path d="M60 90 Q60 70 78 66 L78 40 H122 V66 Q140 70 140 90 V380 Q140 404 116 404 H84 Q60 404 60 380Z"/></clipPath>
+    <linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".55"/><stop offset=".5" stop-color="#ffffff" stop-opacity=".12"/><stop offset="1" stop-color="#ffffff" stop-opacity=".4"/></linearGradient>
+    <linearGradient id="lq" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0b27a"/><stop offset=".55" stop-color="#d9784f"/><stop offset="1" stop-color="#8a2f3d"/></linearGradient>
+    <linearGradient id="au" x1="0" x2="1"><stop offset="0" stop-color="#8a6a2a"/><stop offset=".35" stop-color="#f5dc9a"/><stop offset=".65" stop-color="#c9a24d"/><stop offset="1" stop-color="#7a5a20"/></linearGradient>
+    <linearGradient id="sw" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <clipPath id="body"><rect x="42" y="96" width="116" height="300" rx="16"/></clipPath>
   </defs>
-  <path d="M60 90 Q60 70 78 66 L78 40 H122 V66 Q140 70 140 90 V380 Q140 404 116 404 H84 Q60 404 60 380Z" fill="url(#g1)"/>
-  <rect x="72" y="12" width="56" height="34" rx="8" fill="url(#cap)"/>
-  <rect x="60" y="170" width="80" height="150" fill="url(#g2)" clip-path="url(#body)"/>
-  <rect x="60" y="170" width="80" height="6" fill="${accent}" clip-path="url(#body)"/>
-  <rect x="60" y="314" width="80" height="6" fill="${accent}" clip-path="url(#body)"/>
-  <text x="100" y="228" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="16" fill="#062a45" letter-spacing="1">NOBEN</text>
-  <text x="100" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#1b8fb5" letter-spacing="2">AQUA CARE</text>
-  <circle cx="100" cy="285" r="14" fill="none" stroke="${accent}" stroke-width="2"/>
-  <path d="M92 285 q4 -8 8 0 t8 0" fill="none" stroke="${accent}" stroke-width="2"/>
-  <g clip-path="url(#body)"><rect x="${x}" y="0" width="70" height="420" fill="url(#sw)" transform="skewX(-14)"/></g>
-  <path d="M68 100 V370" stroke="#fff" stroke-opacity=".35" stroke-width="5" stroke-linecap="round" clip-path="url(#body)"/>
+  <!-- cap + neck -->
+  <rect x="76" y="14" width="48" height="58" rx="6" fill="url(#au)"/>
+  <rect x="76" y="62" width="48" height="8" fill="#6a4d18" opacity=".5"/>
+  <rect x="88" y="70" width="24" height="28" fill="url(#au)"/>
+  <!-- glass body -->
+  <rect x="42" y="96" width="116" height="300" rx="16" fill="#f3dfd6" fill-opacity=".18" stroke="#fff" stroke-opacity=".55" stroke-width="2"/>
+  <!-- liquid -->
+  <rect x="50" y="150" width="100" height="238" rx="10" fill="url(#lq)"/>
+  <ellipse cx="100" cy="150" rx="50" ry="3" fill="#ffd9a8" opacity=".8"/>
+  <!-- label -->
+  <rect x="64" y="228" width="72" height="86" fill="#fbf5ea"/>
+  <rect x="64" y="228" width="72" height="3" fill="${accent}"/><rect x="68" y="311" width="64" height="3" fill="${accent}"/>
+  <text x="100" y="262" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="15" fill="#3a1a24" letter-spacing="1.5">AURÉA</text>
+  <line x1="84" y1="272" x2="116" y2="272" stroke="${accent}" stroke-width="1"/>
+  <text x="100" y="288" text-anchor="middle" font-family="Georgia,serif" font-size="5.6" fill="#6a4a3a" letter-spacing="1">EAU DE PARFUM</text>
+  <text x="100" y="302" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" fill="#8a6a5a" letter-spacing=".8">50 ML · 1.7 FL OZ</text>
+  <!-- glass highlights -->
+  <rect x="42" y="96" width="116" height="300" rx="16" fill="url(#gl)" opacity=".5"/>
+  <path d="M54 112 V372" stroke="#fff" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/>
+  <g clip-path="url(#body)"><rect x="${x}" y="0" width="64" height="420" fill="url(#sw)" transform="skewX(-14)"/></g>
 </svg>`;
 };
